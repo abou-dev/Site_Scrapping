@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -53,19 +54,23 @@
     <section class="features">
       <div class="container">
         <div class="row">
+          {% for data in datas %}
           <div class="col-md-4">
             <div class="card">
-              <img
-                class="card-img-top"
-                src="{% static 'images/i1.jpg' %}"
+              <a class="card-img-top" href="jewellery/?data={{data}}"><img
+                src="{{data.image}}"
                 alt="Téléphone 1"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Téléphone 1</h5>
-                <p class="card-text">Description du téléphone 1.</p>
+              /></a>
+              <a class="card-body" href="jewellery/?data={{data}}">
+            <div >
+                <h5 class="card-title">{{data.designation}}</h5>
+                <p class="card-text">desc</p>
               </div>
+             </a>
+
             </div>
           </div>
+          {% endfor %}
           <div class="col-md-4">
             <div class="card">
               <img
