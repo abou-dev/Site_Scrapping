@@ -3,7 +3,7 @@ import json
 from django.shortcuts import render
 
 def index(request):
-    with open(r"C:\Users\bassi\OneDrive\Documents\GitHub\Site_Scrapping\Site_Scrapping\Site_Scrapping\data\jumia.json", 'r') as file:
+    with open("Site_Scrapping/Site_Scrapping/data/jumia.json", 'r') as file:
         data = json.load(file)
     return render(request, "index.html", context={'datas' : data})
 
