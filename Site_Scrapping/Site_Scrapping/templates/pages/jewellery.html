@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -77,7 +78,7 @@
           <div class="col-md-6">
             <div class="img">
               <img
-                src="{{data.image}}"
+                src="{{data.image1}}"
                 class="img-fluid"
                 alt=""
               />
@@ -85,23 +86,21 @@
           </div>
           <div class="col-md-6">
             <div class="detail">
-              <h2 class="title">{{data.designation}}</h2>
+              <h3 class="title">{{data.designation}}</h3>
               <div class="detail_produit">
                 <div>
                   <div>
-                    <h2>Jumia</h2>
-                    <p>Produit Name</p>
-                    <p class="price">Prix : {{data.prix}} CFA</p>
+                    <h2>{{data.site1}}</h2>
+                    <p class="price">Prix : {{data.prix1}}</p>
                   </div>
                   <img src="" alt="" />
                 </div>
                 <div>
                   <div>
-                    <h2>Dakarmarket</h2>
-                    <p>Produit Name</p>
-                    <p class="price">Prix : 15,000 CFA</p>
+                    <h2>{{data.site2}}</h2>
+                    <p class="price">Prix : {{data.prix2}} CFA</p>
                   </div>
-                  <img src="" alt="" />
+                  <img src="{{data.image2}}" alt="" />
                 </div>
               </div>
             </div>

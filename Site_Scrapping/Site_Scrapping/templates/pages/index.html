@@ -57,11 +57,11 @@
           {% for data in datas %}
           <div class="col-md-4">
             <div class="card">
-              <a class="card-img-top" href="jewellery/?data={{data}}"><img
-                src="{{data.image}}"
+              <a class="card-img-top" href="{% url 'jewellery' %}?data={{ data | urlencode }}"><img
+                src="{{data.image1}}"
                 alt="Téléphone 1"
               /></a>
-              <a class="card-body" href="jewellery/?data={{data}}">
+              <a class="card-body" href="{% url 'jewellery' %}?data={{ data | urlencode }}">
             <div >
                 <h5 class="card-title">{{data.designation}}</h5>
                 <p class="card-text">desc</p>
