@@ -2,113 +2,151 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Comparateur de téléphones portables</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-   
-    
-  </head>
-  <body>
-    <header>
+<head>
+   <title>Comparateur de téléphones portables</title>
+   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+   <style>
+      /* Dégradé pour le background du body */
+      body {
+         background: linear-gradient(135deg, #1e00e0, #3c59fc);
+         color: #333;
+      }
+
+      /* Styles pour la section hero */
+      .hero {
+         padding: 50px 0;
+         text-align: center;
+      }
+
+      .hero h1 {
+         font-size: 48px;
+         margin-bottom: 20px;
+      }
+
+      .hero p {
+         font-size: 20px;
+         margin-bottom: 0;
+      }
+
+      /* Ombre pour les cartes */
+      .card {
+        background-color:bisque;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Styles pour le bouton */
+      .compare-button {
+         display: block;
+         margin: 0 auto; /* Centrer horizontalement */
+         margin-top: 20px; /* Espacement du haut */
+         padding: 10px 30px;
+         background: linear-gradient(298deg, #ff6a00, #ff00a6);
+         color: white;
+         font-size: 18px;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .compare-button:hover {
+         background: linear-gradient(298deg, #ff00a6, #ff6a00);
+      }
+   </style>
+</head>
+<body>
+   <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Comparateur de téléphones portables</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Accueil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="jewellery/">Marques</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="fashion/">Comparaison</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">A propos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
+         <a class="navbar-brand" href="#">Comparateur de téléphones portables</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item active">
+                  <a class="nav-link" href="#">Accueil</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="jewellery/">Marques</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="fashion/">Comparaison</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#">A propos</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+               </li>
+            </ul>
+         </div>
       </nav>
-    </header>
+   </header>
 
-    <section class="hero text-center">
+   <section class="hero text-center">
       <div class="container">
-        <h1>Comparateur de téléphones portables</h1>
-        <p>Trouvez le téléphone parfait pour vous.</p>
-        <a href="#" class="btn btn-primary">Voir les téléphones</a>
+         <h1>Comparateur de téléphones portables</h1>
+         <p>Trouvez le téléphone parfait pour vous.</p>
+         <a href="#" class="btn btn-primary compare-button">Voir les téléphones</a>
       </div>
-    </section>
+   </section>
 
-    <section class="features">
+   <section class="features">
       <div class="container">
-        <div class="row">
-          {% for data in datas %}
-          <div class="col-md-4">
-            <div class="card">
-              <a class="card-img-top" href="{% url 'jewellery' %}?data={{ data | urlencode }}"><img
-                src="{{data.image1}}"
-                alt="Téléphone 1"
-              /></a>
-              <a class="card-body" href="{% url 'jewellery' %}?data={{ data | urlencode }}">
-            <div >
-                <h5 class="card-title">{{data.designation}}</h5>
-                <p class="card-text">desc</p>
-              </div>
-             </a>
-
+         <div class="row">
+            {% for data in datas %}
+            <div class="col-md-4">
+               <div class="card">
+                  <a class="card-img-top" href="{% url 'jewellery' %}?data={{ data | urlencode }}"><img
+                     src="{{data.image1}}"
+                     alt="Téléphone 1"
+                  /></a>
+                  <a class="card-body" href="{% url 'jewellery' %}?data={{ data | urlencode }}">
+                     <div>
+                        <h5 class="card-title">{{data.designation}}</h5>
+                        <p class="card-text">desc</p>
+                     </div>
+                  </a>
+               </div>
             </div>
-          </div>
-          {% endfor %}
-          <div class="col-md-4">
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="{% static 'images/i2.jpg' %}"
-                alt="Téléphone 2"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Téléphone 2</h5>
-                <p class="card-text">Description du téléphone 2.</p>
-              </div>
+            {% endfor %}
+            <div class="col-md-4">
+               <div class="card">
+                  <img
+                     class="card-img-top"
+                     src="{% static 'images/i2.jpg' %}"
+                     alt="Téléphone 2"
+                  />
+                  <div class="card-body">
+                     <h5 class="card-title">Téléphone 2</h5>
+                     <p class="card-text">Description du téléphone 2.</p>
+                  </div>
+               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="{% static 'images/i3.jpg' %}"
-                alt="Téléphone 3"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Téléphone 3</h5>
-                <p class="card-text">Description du téléphone 3.</p>
-              </div>
+            <div class="col-md-4">
+               <div class="card">
+                  <img
+                     class="card-img-top"
+                     src="{% static 'images/i3.jpg' %}"
+                     alt="Téléphone 3"
+                  />
+                  <div class="card-body">
+                     <h5 class="card-title">Téléphone 3</h5>
+                     <p class="card-text">Description du téléphone 3.</p>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
+         </div>
       </div>
-    </section>
+   </section>
 
-    <footer class="bg-dark text-white text-center py-3">
+   <footer class="bg-dark text-white text-center py-3">
       <p>© 2023 Comparateur de téléphones portables. Tous droits réservés.</p>
-    </footer>
+   </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
