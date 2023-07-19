@@ -3,20 +3,17 @@ import json
 from django.shortcuts import render
 import ast
 
-from Site_Scrapping.utils import get_db_handle
-
+from SiteScrappingApp.models import Resultat
 
 def index(request):
-<<<<<<< Updated upstream
-    with open(r"C:\Users\bassi\OneDrive\Documents\GitHub\Site_Scrapping\Site_Scrapping\Site_Scrapping\data\jumia.json", 'r') as file:
-        data = json.load(file)
-=======
-   # with open(r"C:\Users\moussa.sow\Documents\GitHub\Site_Scrapping\Site_Scrapping\Site_Scrapping\data\jumia.json", 'r') as file:
-     #   data = json.load(file)
 
-    data = get_db_handle('resultat_db', 'localhost', 27017, 'user', '')
->>>>>>> Stashed changes
-    return render(request, "index.html", context={'datas' : data})
+    with open(r"C:\Users\bassi\OneDrive\Documents\GitHub\Site_Scrapping\Site_Scrapping\Site_Scrapping\data\jumia.json", 'r') as file:
+            data = json.load(file)
+    # produits = Resultat.objects.all()
+    # print(produits)
+    # for produit in produits:
+    #     print(produit.designation)
+    return render(request, "index.html",context={'datas': data})
 
 def electronic(request):
     return render(request, "electronic.html",)
