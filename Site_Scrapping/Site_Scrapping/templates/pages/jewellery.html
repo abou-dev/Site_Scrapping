@@ -68,11 +68,10 @@
 <body class="bg-light">
   <div class="container">
     <div class="card shadow">
-      {% for data in datas %}
       <div class="row">
         <div class="col-md-6">
           <div class="img">
-            <img src="{{data.image}}" class="img-fluid" alt="" />
+            <img src="{{data.image1}}" class="img-fluid" alt="" />
           </div>
         </div>
         <div class="col-md-6">
@@ -81,16 +80,22 @@
             <div class="detail_produit">
               <div>
                 <div>
-                  <h2>{{data.site}}</h2>
-                  <p class="price">Prix : {{data.prix}}</p>
+                  <h2>{{data.site1}}</h2>
+                  <p class="price">Prix : {{data.prix1}}</p>
                 </div>
                 <img src="" alt="" />
+              </div>
+              <div>
+                <div>
+                  <h2>{{data.site2}}</h2>
+                  <p class="price">Prix : {{data.prix2}}</p>
+                </div>
+                <img src="{{data.image2}}" alt="" />
               </div>
             </div>
           </div>
         </div>
       </div>
-      {% endfor %}
     </div>
   </div>
 

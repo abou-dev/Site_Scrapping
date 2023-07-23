@@ -37,10 +37,7 @@
       </div>
     </nav>
   </header>
-  <form method="GET" action="{% url 'index' %}">
-    <input type="text" name="q" placeholder="Rechercher des portables par nom ou marque">
-    <input type="submit" value="Rechercher">
-  </form>
+
   <section class="hero text-center">
     <div class="container">
       <h1>Comparateur de téléphones portables</h1>
@@ -52,41 +49,43 @@
   <section class="features">
     <div class="container">
       <div class="row">
-
-        {% for product in products%}
+        {% for data in datas %}
         <div class="col-md-4">
           <div class="card">
-            <a class="card-img-top" href="{% url 'jewellery' %}?data={{ product.designation | urlencode }}"><img
-                src="{{product.image}}" alt="Téléphone 1" /></a>
-            <a class="card-body" href="{% url 'jewellery' %}?data={{ product.designation | urlencode }}">
+            <a class="card-img-top" href="{% url 'jewellery' %}?data={{ data | urlencode }}"><img src="{{data.image1}}"
+                alt="Téléphone 1" /></a>
+            <a class="card-body" href="{% url 'jewellery' %}?data={{ data | urlencode }}">
               <div>
-                <h5 class="card-title">{{product.designation}}</h5>
+                <h5 class="card-title">{{data.designation}}</h5>
+                <p class="card-text">desc</p>
               </div>
             </a>
 
           </div>
         </div>
         {% endfor %}
-
+        <div class="col-md-4">
+          <div class="card">
+            <img class="card-img-top" src="{% static 'images/i2.jpg' %}" alt="Téléphone 2" />
+            <div class="card-body">
+              <h5 class="card-title">Téléphone 2</h5>
+              <p class="card-text">Description du téléphone 2.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img class="card-img-top" src="{% static 'images/i3.jpg' %}" alt="Téléphone 3" />
+            <div class="card-body">
+              <h5 class="card-title">Téléphone 3</h5>
+              <p class="card-text">Description du téléphone 3.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <div class="pagination">
-    <span class="step-links">
-      {% if products.has_previous %}
-      <a href="?page=1">&laquo; first</a>
-      <a href="?page={{ products.previous_page_number }}">previous</a>
-      {% endif %}
-
-      <span class="current">
-        Page {{ products.number }} of {{ products.paginator.num_pages }}.
-      </span>
-
-      {% if products.has_next %}
-      <a href="?page={{ products.next_page_number }}">next</a>
-      <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
-      {% endif %}
-    </span>
-  </div>
   <footer class="bg-dark text-white text-center py-3">
     <p>© 2023 Comparateur de téléphones portables. Tous droits réservés.</p>
   </footer>

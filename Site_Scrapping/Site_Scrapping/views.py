@@ -14,48 +14,14 @@ def similar(a, b):
 
 
 def index(request):
-    all_products = Resultat.objects.all()
-    products_per_page = 20
-    paginator = Paginator(all_products, products_per_page)
-    page_number = request.GET.get('page')
-    products_for_page = paginator.get_page(page_number)
-
-    # Gestion de la recherche
-    search_query = request.GET.get('q')
-    if search_query:
-        all_products = all_products.filter(Q(designation__icontains=search_query) | Q(site__icontains=search_query))
-
-    # Gestion du tri par marque (si 'sort' est présent dans les paramètres de requête)
-    # sort_by_brand = request.GET.get('sort')
-    # if sort_by_brand:
-    #     all_products = all_products.order_by('brand')
-
-    # Réappliquer la pagination sur les résultats filtrés/triés
-    paginator = Paginator(all_products, products_per_page)
-    page_number = request.GET.get('page')
-    products_for_page = paginator.get_page(page_number)
-
-    return render(request, 'index.html', {'products': products_for_page})
+    with open(r"C:\Users\bassi\OneDrive\Documents\GitHub\Site_Scrapping\Site_Scrapping\Site_Scrapping\data\jumia.json", 'r') as file:
+        data = json.load(file)
+    return render(request, "index.html", context={'datas' : data})
 
 
 def jewellery(request):
     seuil_similarite = 0.8  # Le seuil de similarité souhaité (60% dans votre cas)
     
     data = request.GET.get("data", '')
-    # Récupérer toutes les données de votre modèle
-    toutes_les_donnees = Resultat.objects.all()
-    
-    # Utiliser une liste pour stocker les données similaires trouvées
-    donnees_similaires = []
-    
-    # Parcourir toutes les données pour trouver celles dont la désignation est similaire
-    for donnee in toutes_les_donnees:
-        ratio_similarite = similar(donnee.designation, data)
-        if ratio_similarite >= seuil_similarite:
-            donnees_similaires.append(donnee)
-    
-    # Vous pouvez maintenant utiliser les données similaires dans votre template ou faire d'autres opérations
-    
-    return render(request, "jewellery.html", context={"datas": donnees_similaires})
-
-
+    data_json = ast.literal_eval(data)
+    return render(request, "jewellery.html", context={'data': data_json})
