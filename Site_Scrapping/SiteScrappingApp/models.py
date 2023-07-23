@@ -1,6 +1,7 @@
 from django.db import models
 
 class Resultat(models.Model):
+    idProd = models.AutoField(primary_key=True)
     designation = models.CharField(max_length=255)
     image1 = models.URLField()
     prix1 = models.DecimalField(max_digits=10, decimal_places=2)

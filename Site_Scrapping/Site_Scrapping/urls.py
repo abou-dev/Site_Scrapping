@@ -22,5 +22,4 @@ urlpatterns = [
     path('', index, name='index'),
     path('electronic/', electronic, name='electronic'),
     path('jewellery/',jewellery,name='jewellery'),
-
 ]
