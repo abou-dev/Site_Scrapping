@@ -9,8 +9,15 @@
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
   <title>Document</title>
   <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
     .container {
       margin-top: 50px;
+      flex: 1;
     }
 
     .img {
@@ -20,10 +27,6 @@
     .title {
       color: #428bca;
       margin-top: 20px;
-    }
-
-    .detail_produit {
-      margin-top: 30px;
     }
 
     .detail_produit h2 {
@@ -82,7 +85,7 @@
               <div>
                 <div>
                   <h2>{{data.site}}</h2>
-                  <p class="price">Prix : {{data.prix}}</p>
+                  <h4 class="price">Prix : {{data.prix}}</h4>
                 </div>
                 <img src="" alt="" />
               </div>
@@ -96,7 +99,7 @@
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
-  <footer class="bg-dark text-white text-center py-3">
+  <footer class="bg-dark text-white text-center py-3 mt-2">
     <p>© 2023 Comparateur de téléphones portables. Tous droits réservés.</p>
   </footer>
 </body>
