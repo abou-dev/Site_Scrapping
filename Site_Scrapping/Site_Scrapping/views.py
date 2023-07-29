@@ -16,9 +16,6 @@ def similar(a, b):
 def index(request):
     all_products = Resultat.objects.all()
     products_per_page = 20
-    paginator = Paginator(all_products, products_per_page)
-    page_number = request.GET.get('page')
-    products_for_page = paginator.get_page(page_number)
 
     # Gestion de la recherche
     search_query = request.GET.get('q')
@@ -39,7 +36,7 @@ def index(request):
 
 
 def jewellery(request):
-    seuil_similarite = 0.8  # Le seuil de similarité souhaité (60% dans votre cas)
+    seuil_similarite = 0.8  # Le seuil de similarité souhaité 
     
     data = request.GET.get("data", '')
     # Récupérer toutes les données de votre modèle

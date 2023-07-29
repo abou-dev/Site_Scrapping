@@ -52,9 +52,8 @@
   <section class="features">
     <div class="container bg-white shadow">
       <div class="row">
-
         {% for product in products%}
-        <div class="col-md-4">
+        <div class="col-md-6 col-lg-4">
           <div class="card">
             <a class="card-img-top" href="{% url 'jewellery' %}?data={{ product.designation | urlencode }}"><img
                 src="{{product.image}}" alt="Téléphone 1" /></a>
@@ -63,11 +62,11 @@
                 <h5 class="card-title">{{product.designation}}</h5>
               </div>
             </a>
-
           </div>
         </div>
         {% endfor %}
-
+      </div>
+    </div>
   </section>
 
   <div class="pagination">
@@ -91,9 +90,6 @@
     <p>© 2023 Comparateur de téléphones portables. Tous droits réservés.</p>
   </footer>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
