@@ -34,13 +34,15 @@
             <a class="nav-link" href="#">Contact</a>
           </li>
         </ul>
+        <form class="d-flex ml-2" role="search" method="GET" action="{% url 'index' %}">
+          <input class="form-control me-2 mr-2" type="text" name="q"
+            placeholder="Rechercher des portables par nom ou marque" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
     </nav>
   </header>
-  <form method="GET" action="{% url 'index' %}">
-    <input type="text" name="q" placeholder="Rechercher des portables par nom ou marque">
-    <input type="submit" value="Rechercher">
-  </form>
+
   <section class="hero text-center">
     <div class="container">
       <h1>Comparateur de téléphones portables</h1>
