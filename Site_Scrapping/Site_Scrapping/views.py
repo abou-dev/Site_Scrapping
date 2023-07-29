@@ -22,18 +22,12 @@ def index(request):
     if search_query:
         all_products = all_products.filter(Q(designation__icontains=search_query) | Q(site__icontains=search_query))
 
-    # Gestion du tri par marque (si 'sort' est présent dans les paramètres de requête)
-    # sort_by_brand = request.GET.get('sort')
-    # if sort_by_brand:
-    #     all_products = all_products.order_by('brand')
-
     # Réappliquer la pagination sur les résultats filtrés/triés
     paginator = Paginator(all_products, products_per_page)
     page_number = request.GET.get('page')
     products_for_page = paginator.get_page(page_number)
 
-    return render(request, 'index.html', {'products': products_for_page})
-
+    return render(request, 'index.html', {'products': products_for_page, 'search_query': search_query})
 
 def jewellery(request):
     seuil_similarite = 0.8  # Le seuil de similarité souhaité 
