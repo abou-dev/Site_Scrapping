@@ -66,29 +66,42 @@
         </div>
         {% endfor %}
       </div>
+      <div class="pagination justify-content-center mt-3">
+        <!-- Ajoutez la classe 'justify-content-center' pour centrer la pagination -->
+        <ul class="pagination"> <!-- Utilisez la classe 'pagination' pour le conteneur de la pagination -->
+          {% if products.has_previous %}
+          <li class="page-item"> <!-- Utilisez la classe 'page-item' pour chaque élément de la pagination -->
+            <a href="?page=1" class="page-link">&laquo; first</a>
+            <!-- Utilisez la classe 'page-link' pour les liens de pagination -->
+          </li>
+          <li class="page-item">
+            <a href="?page={{ products.previous_page_number }}" class="page-link">previous</a>
+          </li>
+          {% endif %}
+
+          <li class="page-item disabled">
+            <!-- Utilisez la classe 'disabled' pour les éléments de pagination désactivés -->
+            <span class="page-link">
+              Page {{ products.number }} of {{ products.paginator.num_pages }}.
+            </span>
+          </li>
+
+          {% if products.has_next %}
+          <li class="page-item">
+            <a href="?page={{ products.next_page_number }}" class="page-link">next</a>
+          </li>
+          <li class="page-item">
+            <a href="?page={{ products.paginator.num_pages }}" class="page-link">&raquo; last</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
   </section>
 
-  <div class="pagination">
-    <span class="step-links">
-      {% if products.has_previous %}
-      <a href="?page=1">&laquo; first</a>
-      <a href="?page={{ products.previous_page_number }}">previous</a>
-      {% endif %}
 
-      <span class="current">
-        Page {{ products.number }} of {{ products.paginator.num_pages }}.
-      </span>
 
-      {% if products.has_next %}
-      <a href="?page={{ products.next_page_number }}">next</a>
-      <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
-      {% endif %}
-    </span>
-  </div>
-  <footer class="bg-dark text-white text-center py-3">
-    <p>© 2023 Comparateur de téléphones portables. Tous droits réservés.</p>
-  </footer>
+
 
 </body>
 
