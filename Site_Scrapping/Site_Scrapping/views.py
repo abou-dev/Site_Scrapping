@@ -33,7 +33,8 @@ def index(request):
     page_number = request.GET.get('page')
     products_for_page = paginator.get_page(page_number)
 
-    return render(request, 'index.html', {'products': products_for_page, 'search_query': search_query})
+    return render(request, 'index.html', {'products': products_for_page,
+                                           'search_query': search_query})
 
 def jewellery(request):
     seuil_similarite = 0.8  # Le seuil de similarité souhaité 
@@ -79,4 +80,6 @@ def marque(request):
     page_number = request.GET.get('page')
     products_for_page = paginator.get_page(page_number)
 
-    return render(request, 'marque.html',context={'brands': BRANDS, 'products': products_for_page, 'search_query': search_query})
+    return render(request, 'marque.html',context={'brands': BRANDS, 
+                                                'products': products_for_page,
+                                                'search_query': search_query})
