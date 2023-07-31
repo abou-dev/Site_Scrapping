@@ -6,6 +6,8 @@
 <head>
   <title>Comparateur de téléphones portables</title>
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 </head>
 
 <body class="bg-ligth">
@@ -24,6 +26,7 @@
           <li class="nav-item">
             <a class="nav-link" href="jewellery/">Marques</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#">A propos</a>
           </li>
@@ -49,9 +52,25 @@
 
   <section class="features">
     <div class="container bg-white shadow">
-      <div class="row">
+      <div class="row g-3 ">
         {% for product in products%}
         <div class="col-md-6 col-lg-4">
+          <div class="card mb-3" style="width: 19rem;">
+            <a href="{% url 'jewellery' %}?data={{ product.designation | urlencode }}" class="card-img-top"><img
+                src="{{product.image}}" alt="image de telephone"></a>
+
+            <div class="card-body">
+              <h5 class="card-title">
+                <a class="link-body-emphasis stretched-link d-block my-2 text-truncate text-decoration-none"
+                  href="{% url 'jewellery' %}?data={{ product.designation | urlencode }}">
+                  <p class="card-text">{{product.designation}}</p>
+                </a>
+              </h5>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-6 col-lg-4">
           <div class="card">
             <a class="card-img-top" href="{% url 'jewellery' %}?data={{ product.designation | urlencode }}"><img
                 src="{{product.image}}" alt="Téléphone 1" /></a>
@@ -61,7 +80,7 @@
               </div>
             </a>
           </div>
-        </div>
+        </div> -->
         {% endfor %}
       </div>
       <div class="pagination justify-content-center mt-3">
