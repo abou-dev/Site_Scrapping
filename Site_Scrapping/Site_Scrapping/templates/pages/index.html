@@ -6,11 +6,14 @@
 <head>
   <title>Comparateur de téléphones portables</title>
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+  <style>
+    body {
+      background-color: rgb(228, 219, 219);
+    }
+  </style>
 </head>
 
-<body class="bg-ligth">
+<body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">Comparateur de téléphones portables</a>
@@ -21,10 +24,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Accueil</a>
+            <a class="nav-link" href="{% url 'index' %}">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="jewellery/">Marques</a>
+            <a class="nav-link" href="{% url 'marque' %}">Marques</a>
           </li>
 
           <li class="nav-item">
@@ -51,7 +54,7 @@
   </section>
 
   <section class="features">
-    <div class="container bg-white shadow">
+    <div class="container">
       <div class="row g-3 ">
         {% for product in products%}
         <div class="col-md-6 col-lg-4">
@@ -69,18 +72,6 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="col-md-6 col-lg-4">
-          <div class="card">
-            <a class="card-img-top" href="{% url 'jewellery' %}?data={{ product.designation | urlencode }}"><img
-                src="{{product.image}}" alt="Téléphone 1" /></a>
-            <a class="card-body" href="{% url 'jewellery' %}?data={{ product.designation | urlencode }}">
-              <div>
-                <h5 class="card-title">{{product.designation}}</h5>
-              </div>
-            </a>
-          </div>
-        </div> -->
         {% endfor %}
       </div>
       <div class="pagination justify-content-center mt-3">

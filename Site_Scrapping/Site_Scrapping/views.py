@@ -1,20 +1,26 @@
 from difflib import SequenceMatcher
-import json
 from django.db.models import Q
 
 from django.shortcuts import render
-import ast
 from django.core.paginator import Paginator
 from SiteScrappingApp.models import Resultat
+
+BRANDS = ['Samsung', 'Apple', 'Huawei', 'Xiaomi', 'LG',
+        'Nokia', 'Lenovo', 'Oppo',
+        'Realme', 'Infinix', 'Tecno', 'Micromax',
+        'Microsoft', 'Nubia', 'iBall', 'Swipe',
+        'Sharp', 'Celkon', 'Moto', 'Acer', 'Realme', 'Autre']
 
 def similar(a, b):
     if not a or not b:  # Vérifier si les chaînes de caractères sont vides (None)
         return 0.0  
     return SequenceMatcher(None, a, b).ratio()
 
-
 def index(request):
     all_products = Resultat.objects.all()
+    for product in all_products:
+        product.brand = extract_brand_from_name(product)
+
     products_per_page = 20
 
     # Gestion de la recherche
@@ -46,7 +52,31 @@ def jewellery(request):
             donnees_similaires.append(donnee)
     
     # Vous pouvez maintenant utiliser les données similaires dans votre template ou faire d'autres opérations
-    
     return render(request, "jewellery.html", context={"datas": donnees_similaires})
 
+def extract_brand_from_name(product):
+    product_name = product.designation.lower()  # Convertir le nom du produit en minuscules pour une recherche insensible à la casse
+    for brand in BRANDS:
+        if brand.lower() in product_name:
+            return brand
+    return "Autre"  # Si aucune marque n'est trouvée, retourner "Autre" ou laissez le champ brand vide
 
+
+def marque(request):
+    all_products = Resultat.objects.all()
+    products_per_page = 20
+    products = []
+
+    for product in all_products:
+        product.brand = extract_brand_from_name(product)
+    
+    search_query = request.GET.get('marque', BRANDS[0])
+    for product in all_products:
+        if search_query == product.brand:
+            products.append(product)
+
+    paginator = Paginator(products, products_per_page)
+    page_number = request.GET.get('page')
+    products_for_page = paginator.get_page(page_number)
+
+    return render(request, 'marque.html',context={'brands': BRANDS, 'products': products_for_page, 'search_query': search_query})
