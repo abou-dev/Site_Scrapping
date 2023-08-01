@@ -3,13 +3,14 @@ from django.db.models import Q
 
 from django.shortcuts import render
 from django.core.paginator import Paginator
+
 from SiteScrappingApp.models import Resultat
 
 BRANDS = ['Samsung', 'Apple', 'Huawei', 'Xiaomi', 'LG',
         'Nokia', 'Lenovo', 'Oppo',
-        'Realme', 'Infinix', 'Tecno', 'Micromax',
-        'Microsoft', 'Nubia', 'iBall', 'Swipe',
-        'Sharp', 'Celkon', 'Moto', 'Acer', 'Realme', 'Autre']
+        'Realme', 'Infinix', 'Tecno', 'Itel', 'Iphone',
+        'Microsoft', 
+         'Acer', 'Realme', 'Autre']
 
 def similar(a, b):
     if not a or not b:  # Vérifier si les chaînes de caractères sont vides (None)
@@ -41,6 +42,7 @@ def jewellery(request):
     
     data = request.GET.get("data", '')
     # Récupérer toutes les données de votre modèle
+
     toutes_les_donnees = Resultat.objects.all()
     
     # Utiliser une liste pour stocker les données similaires trouvées
@@ -53,10 +55,12 @@ def jewellery(request):
             donnees_similaires.append(donnee)
     
     # Vous pouvez maintenant utiliser les données similaires dans votre template ou faire d'autres opérations
+    donnees_similaires.sort(key=lambda x: x.prix)
     return render(request, "jewellery.html", context={"datas": donnees_similaires})
 
 def extract_brand_from_name(product):
-    product_name = product.designation.lower()  # Convertir le nom du produit en minuscules pour une recherche insensible à la casse
+    #if product.designation:
+    product_name = product.designation.lower()
     for brand in BRANDS:
         if brand.lower() in product_name:
             return brand
