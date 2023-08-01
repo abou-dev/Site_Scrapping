@@ -6,10 +6,8 @@ from django.core.paginator import Paginator
 from SiteScrappingApp.models import Resultat
 
 BRANDS = ['Samsung', 'Apple', 'Huawei', 'Xiaomi', 'LG',
-        'Nokia', 'Lenovo', 'Oppo',
-        'Realme', 'Infinix', 'Tecno', 'Micromax',
-        'Microsoft', 'Nubia', 'iBall', 'Swipe',
-        'Sharp', 'Celkon', 'Moto', 'Acer', 'Realme', 'Autre']
+        'Nokia', 'Lenovo', 'Oppo','Realme', 'Infinix', 
+        'Tecno','Microsoft','Sharp', 'Realme', 'Autre']
 
 def similar(a, b):
     if not a or not b:  # Vérifier si les chaînes de caractères sont vides (None)
